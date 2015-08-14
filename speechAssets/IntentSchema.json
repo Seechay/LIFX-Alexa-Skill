@@ -1,0 +1,47 @@
+{
+  "intents": [
+    {
+      "intent": "AdjustBrightness",
+      "slots": [
+        {
+          "name": "Brightness",
+          "type": "NUMBER"
+        },
+        {
+          "name": "Adjustment",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "AdjustPower",
+      "slots": [
+       {
+          "name": "State",
+          "type": "LITERAL"
+        }
+      
+      ]
+    },
+    {
+      "intent": "AdjustColor",
+      "slots": [
+       {
+          "name": "Color",
+          "type": "LITERAL"
+        }
+      
+      ]
+    },
+    {
+      "intent": "AdjustScene",
+      "slots": [
+       {
+          "name": "Scene",
+          "type": "LITERAL"
+        }
+      
+      ]
+    }               
+  ]
+}
