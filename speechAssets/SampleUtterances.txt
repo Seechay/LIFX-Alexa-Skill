@@ -1,11 +1,23 @@
 AdjustBrightness {Adjustment}
 AdjustBrightness {Adjustment} the lights
 AdjustBrightness {Brightness}
+AdjustBrightness {SelectorFirst} {Brightness}
+AdjustBrightness {SelectorFirst} and {SelectorSecond} {Brightness}
 AdjustBrightness set the lights to {Brightness}
 AdjustBrightness set the lights to {Brightness} brightness
 AdjustBrightness set the lights to {Brightness} percent
 AdjustBrightness set the lights to {Brightness} percent brightness
 AdjustBrightness set the light brightness to {Brightness}
+AdjustBrightness set {SelectorFirst} to {Brightness}
+AdjustBrightness set {SelectorFirst} to {Brightness} brightness
+AdjustBrightness set {SelectorFirst} to {Brightness} percent
+AdjustBrightness set {SelectorFirst} to {Brightness} percent brightness
+AdjustBrightness set {SelectorFirst} brightness to {Brightness}
+AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness}
+AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness} brightness
+AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness} percent
+AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness} percent brightness
+AdjustBrightness set {SelectorFirst} and {SelectorSecond} brightness to {Brightness}
 AdjustPower toggle the lights
 AdjustPower turn {State} the lights
 AdjustPower turn {State} my lights
