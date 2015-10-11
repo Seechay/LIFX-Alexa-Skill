@@ -1,114 +1,40 @@
-AdjustBrightness {dim|Adjustment} the lights
-AdjustBrightness {lower|Adjustment} the lights
-AdjustBrightness {decrease|Adjustment} the lights
-AdjustBrightness {brighten|Adjustment} the lights
-AdjustBrightness {bright|Adjustment} the lights
-AdjustBrightness {increase|Adjustment} the lights
-AdjustBrightness {raise|Adjustment} the lights
-AdjustBrightness {increase|Adjustment} the lights brightness
-AdjustBrightness {raise|Adjustment} the lights brightness
-AdjustBrightness {raise|Adjustment} the light brightness
-AdjustBrightness {increase|Adjustment} the light brightness
-AdjustBrightness set the lights to {ten|Brightness}
-AdjustBrightness set the lights to {twenty|Brightness}
-AdjustBrightness set the lights to {thirty|Brightness}
-AdjustBrightness set the lights to {forty|Brightness}
-AdjustBrightness set the lights to {fifty|Brightness}
-AdjustBrightness set the lights to {sixty|Brightness}
-AdjustBrightness set the lights to {seventy|Brightness}
-AdjustBrightness set the lights to {eighty|Brightness}
-AdjustBrightness set the lights to {ninety|Brightness}
-AdjustBrightness set the lights to {one hundred|Brightness}
-AdjustBrightness set the lights to {ten|Brightness} brightness
-AdjustBrightness set the lights to {twenty|Brightness} brightness
-AdjustBrightness set the lights to {thirty|Brightness} brightness
-AdjustBrightness set the lights to {forty|Brightness} brightness
-AdjustBrightness set the lights to {fifty|Brightness} brightness
-AdjustBrightness set the lights to {sixty|Brightness} brightness
-AdjustBrightness set the lights to {seventy|Brightness} brightness
-AdjustBrightness set the lights to {eighty|Brightness} brightness
-AdjustBrightness set the lights to {ninety|Brightness} brightness
-AdjustBrightness set the lights to {one hundred|Brightness} brightness
-AdjustBrightness set the lights to {ten|Brightness} percent
-AdjustBrightness set the lights to {twenty|Brightness} percent
-AdjustBrightness set the lights to {thirty|Brightness} percent
-AdjustBrightness set the lights to {forty|Brightness} percent
-AdjustBrightness set the lights to {fifty|Brightness} percent
-AdjustBrightness set the lights to {sixty|Brightness} percent
-AdjustBrightness set the lights to {seventy|Brightness} percent
-AdjustBrightness set the lights to {eighty|Brightness} percent
-AdjustBrightness set the lights to {ninety|Brightness} percent
-AdjustBrightness set the lights to {one hundred|Brightness} percent
-AdjustBrightness set the lights to {ten|Brightness} percent brightness
-AdjustBrightness set the lights to {twenty|Brightness} percent brightness
-AdjustBrightness set the lights to {thirty|Brightness} percent brightness
-AdjustBrightness set the lights to {forty|Brightness} percent brightness
-AdjustBrightness set the lights to {fifty|Brightness} percent brightness
-AdjustBrightness set the lights to {sixty|Brightness} percent brightness
-AdjustBrightness set the lights to {seventy|Brightness} percent brightness
-AdjustBrightness set the lights to {eighty|Brightness} percent brightness
-AdjustBrightness set the lights to {ninety|Brightness} percent brightness
-AdjustBrightness set the lights to {one hundred|Brightness} percent brightness
-AdjustBrightness set the light brightness to {ten|Brightness}
-AdjustBrightness set the light brightness to {twenty|Brightness}
-AdjustBrightness set the light brightness to {thirty|Brightness}
-AdjustBrightness set the light brightness to {forty|Brightness}
-AdjustBrightness set the light brightness to {fifty|Brightness}
-AdjustBrightness set the light brightness to {sixty|Brightness}
-AdjustBrightness set the light brightness to {seventy|Brightness}
-AdjustBrightness set the light brightness to {eighty|Brightness}
-AdjustBrightness set the light brightness to {ninety|Brightness}
-AdjustBrightness set the light brightness to {one hundred|Brightness}
+AdjustBrightness {Adjustment}
+AdjustBrightness {Adjustment} the lights
+AdjustBrightness {Brightness}
+AdjustBrightness set the lights to {Brightness}
+AdjustBrightness set the lights to {Brightness} brightness
+AdjustBrightness set the lights to {Brightness} percent
+AdjustBrightness set the lights to {Brightness} percent brightness
+AdjustBrightness set the light brightness to {Brightness}
 AdjustPower toggle the lights
-AdjustPower turn {off|State} the lights
-AdjustPower turn {on|State} the lights
-AdjustPower turn {off|State} my lights
-AdjustPower turn {on|State} my lights
-AdjustPower turn the lights {off|State}
-AdjustPower turn the lights {on|State}
-AdjustPower turn my lights {off|State}
-AdjustPower turn my lights {on|State}
-AdjustPower clap {off|State}
-AdjustPower clap {on|State}
+AdjustPower turn {State} the lights
+AdjustPower turn {State} my lights
+AdjustPower turn the lights {State}
+AdjustPower turn my lights {State}
+AdjustPower clap {State}
 AdjustPower lights
-AdjustColor make my lights {green|Color}
-AdjustColor make my lights {red|Color}
-AdjustColor make my lights {blue|Color}
-AdjustColor make my lights {yellow|Color}
-AdjustColor make my lights {white|Color}
-AdjustColor make my lights {pink|Color}
-AdjustColor make my lights {purple|Color}
-AdjustColor make my lights {orange|Color}
-AdjustColor set my lights to {green|Color}
-AdjustColor set my lights to {red|Color}
-AdjustColor set my lights to {blue|Color}
-AdjustColor set my lights to {yellow|Color}
-AdjustColor set my lights to {white|Color}
-AdjustColor set my lights to {pink|Color}
-AdjustColor set my lights to {purple|Color}
-AdjustColor set my lights to {orange|Color}
-AdjustColor make the lights {green|Color}
-AdjustColor make the lights {red|Color}
-AdjustColor make the lights {blue|Color}
-AdjustColor make the lights {yellow|Color}
-AdjustColor make the lights {white|Color}
-AdjustColor make the lights {pink|Color}
-AdjustColor make the lights {purple|Color}
-AdjustColor make the lights {orange|Color}
-AdjustColor set the lights to {green|Color}
-AdjustColor set the lights to {red|Color}
-AdjustColor set the lights to {blue|Color}
-AdjustColor set the lights to {yellow|Color}
-AdjustColor set the lights to {white|Color}
-AdjustColor set the lights to {pink|Color}
-AdjustColor set the lights to {purple|Color}
-AdjustColor set the lights to {orange|Color}
-AdjustColor {green|Color}
-AdjustColor {red|Color}
-AdjustColor {blue|Color}
-AdjustColor {yellow|Color}
-AdjustColor {white|Color}
-AdjustColor {pink|Color}
-AdjustColor {purple|Color}
-AdjustColor {orange|Color}
-AdjustScene {party|Scene} mode
+AdjustPower {State}
+AdjustPower turn {State} {SelectorFirst}
+AdjustPower turn {State} {SelectorFirst} and {SelectorSecond}
+AdjustPower turn {SelectorFirst} {State}
+AdjustPower turn {SelectorFirst} and {SelectorSecond} {State}
+AdjustPower set {SelectorFirst} to {State}
+AdjustPower set {SelectorFirst} and {SelectorSecond} to {State}
+AdjustColor make my lights {Color}
+AdjustColor set my lights to {Color}
+AdjustColor make the lights {Color}
+AdjustColor set the lights to {Color}
+AdjustColor {Color}
+AdjustColor make {SelectorFirst} {Color}
+AdjustColor make {SelectorFirst} and {SelectorSecond} {Color}
+AdjustColor {SelectorFirst} {Color}
+AdjustColor {SelectorFirst} and {SelectorSecond} {Color}
+AdjustColor set {SelectorFirst} to {Color}
+AdjustColor set {SelectorFirst} and {SelectorSecond} to {Color}
+AdjustScene {Scene} mode
+AdjustScene set scene {Scene}
+AdjustScene set scene to {Scene}
+AdjustScene set the scene to {Scene}
+AdjustScene make it {Scene}
+AdjustScene scene {Scene}
+AdjustScene {Scene} scene

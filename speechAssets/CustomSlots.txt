@@ -1,0 +1,18 @@
+Custom Slot Types
+(note: newlines displayed as | for brevity)
+
+
+LIST_OF_ADJUSTMENTS
+dim | lower | decrease | brighten | bright | increase | raise | up | down
+
+LIST_OF_COLORS
+red | orange | blue | green | yellow | white | pink | purple	Edit
+
+LIST_OF_LIGHTS
+North | East | South | West	Edit
+
+LIST_OF_STATES
+on | off	Edit
+
+LIST_OF_SCENES
+Wake Up

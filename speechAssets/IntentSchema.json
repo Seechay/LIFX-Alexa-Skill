@@ -5,12 +5,20 @@
       "slots": [
         {
           "name": "Brightness",
-          "type": "NUMBER"
+          "type": "AMAZON.NUMBER"
         },
         {
           "name": "Adjustment",
-          "type": "LITERAL"
-        }
+          "type": "LIST_OF_ADJUSTMENTS"
+        },
+		{
+			"name": "SelectorFirst",
+			"type": "LIST_OF_LIGHTS"
+		},
+		{
+			"name": "SelectorSecond",
+			"type": "LIST_OF_LIGHTS"
+		}
       ]
     },
     {
@@ -18,9 +26,16 @@
       "slots": [
        {
           "name": "State",
-          "type": "LITERAL"
-        }
-      
+          "type": "LIST_OF_STATES"
+        },
+		{
+			"name": "SelectorFirst",
+			"type": "LIST_OF_LIGHTS"
+		},
+		{
+			"name": "SelectorSecond",
+			"type": "LIST_OF_LIGHTS"
+		}
       ]
     },
     {
@@ -28,9 +43,16 @@
       "slots": [
        {
           "name": "Color",
-          "type": "LITERAL"
-        }
-      
+          "type": "LIST_OF_COLORS"
+        },
+		{
+			"name": "SelectorFirst",
+			"type": "LIST_OF_LIGHTS"
+		},
+		{
+			"name": "SelectorSecond",
+			"type": "LIST_OF_LIGHTS"
+		}    
       ]
     },
     {
@@ -38,7 +60,7 @@
       "slots": [
        {
           "name": "Scene",
-          "type": "LITERAL"
+          "type": "LIST_OF_SCENES"
         }
       
       ]

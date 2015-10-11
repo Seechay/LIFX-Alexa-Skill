@@ -3,8 +3,8 @@
 \**************************************/
 var APP_ID = 'amzn1.echo-sdk-ams.app.xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'; //replace with your amazon app ID
 var appToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //replace with your LIFX app token
-var dimString = ["dim", "lower", "decrease"]; //strings to dim the lights as setup in the utterances
-var brightString = ["bright", "brighten", "increase", "raise"]; //strings to brighten the lights as setup in the utterances
+var dimString = ["dim", "lower", "decrease", "down"]; //strings to dim the lights as setup in the utterances
+var brightString = ["bright", "brighten", "increase", "raise", "up"]; //strings to brighten the lights as setup in the utterances
 var enableFeedback = true; //whether or not you want Alexa to tell you she changed the lights
 
 
@@ -14,9 +14,9 @@ var enableFeedback = true; //whether or not you want Alexa to tell you she chang
 var https = require('https');
 var querystring = require('querystring');
 var brightness = 0.00;
-var brightShift = false;
+var addProcess = false;
 var AlexaSkill = require('./AlexaSkill');
-var urlPrefix = '/v1beta1/lights/all';
+var urlPrefix = '/v1/lights/';
 var intentEnum = {
     BRIGHTNESS: 0,
     POWER: 1,
@@ -71,17 +71,35 @@ LIFX.prototype.intentHandlers = {
 };
 //Prepares the request to be sent to the LIFX server
 function generateRequest(intent, session, response) {
-    var intentName = intent.name.toLowerCase();
+    var intentName = String(intent.name).toLowerCase();
     var url = "";
+	var selector = "/";
     var methodType = "";
     var bodyString = "";
     var speechOutput = "An error has occured.";
-
+	var selectorFirstSlot = intent.slots.SelectorFirst;
+	var selectorSecondSlot = intent.slots.SelectorSecond;
+	var numSelectors = 0;
+	if (selectorFirstSlot && selectorFirstSlot.value)
+	{
+		numSelectors = 1;
+		selector = selector + 'label:' + selectorFirstSlot.value.capitalize();
+		if (selectorSecondSlot && selectorSecondSlot.value)
+		{
+			selector = selector + ',label:' + selectorSecondSlot.value.capitalize();
+			numSelectors = 2;
+		}
+	}
+	else
+	{
+		selector = selector + 'all';
+	}
+	console.log("Selector: " + selector);
     switch (currentIntent) {
 
         case intentEnum.BRIGHTNESS:
             {
-                url = urlPrefix + '/color';
+                url = urlPrefix + selector + '/state';
                 methodType = 'PUT';
                 var brightnessSlot = intent.slots.Brightness;
                 var adjustmentSlot = intent.slots.Adjustment;
@@ -92,11 +110,11 @@ function generateRequest(intent, session, response) {
                     speechOutput = "I have set the brightness to " + (brightnessValue * 100) + " percent.";
                 }
                 if (adjustmentSlot && adjustmentSlot.value) { //if utterance contains a dim/brighten request
-                    brightShift = true;
-                    parseBrightness(intent, response); //gets current brightness to dim/brighten with a shift
+                    addProcess = true;
+                    parseBrightness(intent, response, url); //gets current brightness to dim/brighten with a shift
                 }
                 bodyString = JSON.stringify({
-                    "color": "brightness:" + brightnessValue
+                    "brightness": + brightnessValue
                 });
                 break;
             }
@@ -104,15 +122,24 @@ function generateRequest(intent, session, response) {
             {
                 var powerSlot = intent.slots.State
                 if (powerSlot && powerSlot.value) { //if utterance contains an on/off request
-                    url = urlPrefix + '/power';
+                    url = urlPrefix + selector + '/state';
                     methodType = 'PUT';
-                    var state = powerSlot.value.toLowerCase();
+                    var state = String(powerSlot.value).toLowerCase();
                     bodyString = JSON.stringify({
-                        "state": state
+                        "power": state
                     });
-                    speechOutput = "I have turned the lights " + state + ".";
-                } else { //if no specific request, toggle the lights
-                    url = urlPrefix + '/toggle';
+					if(numSelectors == 1){
+					speechOutput = "I have turned " + String(selectorFirstSlot.value) + " " + state + ".";
+					}
+					else if(numSelectors == 2){
+					speechOutput = "I have turned " + String(selectorFirstSlot.value) + " and " + String(selectorSecondSlot.value) + " " + state + ".";
+					}
+					else{                    
+					speechOutput = "I have turned the lights " + state + ".";
+					}
+					}
+					else { //if no specific request, toggle the lights
+                    url = urlPrefix + '/all' + '/toggle';
                     methodType = 'POST';
                     bodyString = JSON.stringify({});
                     speechOutput = "I have toggled the lights.";
@@ -121,18 +148,19 @@ function generateRequest(intent, session, response) {
             }
         case intentEnum.COLOR:
             {
-                url = urlPrefix + '/color';
+                url = urlPrefix + selector + '/state';
                 methodType = 'PUT';
-                var color = intent.slots.Color.value.toLowerCase();
+                var color = String(intent.slots.Color.value).toLowerCase();
                 bodyString = JSON.stringify({
                     "color": color
                 });
-                speechOutput = "I have set color of the lights to " + color + ".";
+                speechOutput = "I have set color to " + color + ".";
                 break;
             }
-        case intentEnum.SCENE: //unimplemented
+        case intentEnum.SCENE: 
             {
-                methodType = 'PUT';
+				addProcess = true;
+				parseScenes(intent,response);
                 break;
             }
         default:
@@ -140,7 +168,7 @@ function generateRequest(intent, session, response) {
                 speechOutput = "That was not a valid command, please try again.";
             }
     }
-    if (!brightShift) { //no dim/brighten shift requested
+    if (!addProcess) { //no additional processing required (ie no brightness shift nor scene selection)
         sendRequest(url, methodType, bodyString, speechOutput, response); //send generated request to LIFX server
     }
 }
@@ -170,11 +198,11 @@ function sendRequest(url, methodType, bodyString, speechOutput, response) {
     post_req.end();
 }
 
-function parseBrightness(intent, response) {
+function parseBrightness(intent, response, url) {
     var post_options = {
         host: 'api.lifx.com',
         port: '443',
-        path: '/v1beta1/lights/all',
+        path: url,
         method: 'GET',
         headers: {
             Authorization: 'Bearer ' + appToken
@@ -196,7 +224,7 @@ function parseBrightness(intent, response) {
             var methodType = 'PUT';
             var adjustmentSlot = intent.slots.Adjustment;
             var brightnessValue = 0.5;
-            if (dimString.indexOf(adjustmentSlot.value.toLowerCase()) > -1) { //if dim command recognized
+            if (dimString.indexOf(String(adjustmentSlot.value).toLowerCase()) > -1) { //if dim command recognized
                 if (bright >= 0.1) { //lower the brightness by 10%
                     brightnessValue = bright - 0.1;
                     speechOutput = "I have lowered the brightness by ten percent.";
@@ -205,7 +233,7 @@ function parseBrightness(intent, response) {
                     speechOutput = "I have set the brightness to one percent.";
                 }
             }
-            if (brightString.indexOf(adjustmentSlot.value.toLowerCase()) > -1) { //if brighten command recognized
+            if (brightString.indexOf(String(adjustmentSlot.value).toLowerCase()) > -1) { //if brighten command recognized
                 if (bright <= 1.0) { //raise brightness by 10%
                     brightnessValue = bright + 0.1;
                     speechOutput = "I have raised the brightness by ten percent.";
@@ -228,6 +256,55 @@ function parseBrightness(intent, response) {
 
 }
 
+function parseScenes(intent, response) {
+    var post_options = {
+        host: 'api.lifx.com',
+        port: '443',
+        path: '/v1/scenes',
+        method: 'GET',
+        headers: {
+            Authorization: 'Bearer ' + appToken
+        }
+    };
+	var sceneName = String(intent.slots.Scene.value).toLowerCase();
+    var text = "";
+    var req = https.request(post_options, function(res) {
+        res.setEncoding('utf8');
+
+        res.on('data', function(chunk) {
+            text += chunk;
+        });
+
+        res.on('end', function() {
+			console.log(sceneName);
+            var obj = JSON.parse(text);
+			var scene = obj[0].uuid;
+			for(i = 0; i < Object.keys(obj).length;i++)
+			{
+				if(sceneName.indexOf(obj[i].name.toLowerCase()) > -1)
+				{
+					scene = obj[i].uuid;
+					break;
+				}
+			}
+            var url = '/v1/scenes/scene_id:' + scene + '/activate';
+            var methodType = 'PUT';
+            bodyString = JSON.stringify({            
+            });
+			speechOutput = "I have set the scene to " + sceneName + ".";
+            sendRequest(url, methodType, bodyString, speechOutput, response); //send generated request to LIFX server
+        });
+    });
+
+    req.on('error', function(err) {});
+
+    req.end();
+
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 // Create the handler that responds to the Alexa Request.
 exports.handler = function(event, context) {
     // Create an instance of the LIFX Skill.
