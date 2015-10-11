@@ -111,7 +111,7 @@ function generateRequest(intent, session, response) {
                 }
                 if (adjustmentSlot && adjustmentSlot.value) { //if utterance contains a dim/brighten request
                     addProcess = true;
-                    parseBrightness(intent, response, url); //gets current brightness to dim/brighten with a shift
+                    parseBrightness(intent, response, urlPrefix+selector); //gets current brightness to dim/brighten with a shift
                 }
                 bodyString = JSON.stringify({
                     "brightness": + brightnessValue
@@ -220,7 +220,7 @@ function parseBrightness(intent, response, url) {
             //text = text.substring(1,text.length-1);
             var obj = JSON.parse(text);
             var bright = obj[0].brightness;
-            var url = urlPrefix + '/color';
+            var newurl = url + '/state';
             var methodType = 'PUT';
             var adjustmentSlot = intent.slots.Adjustment;
             var brightnessValue = 0.5;
@@ -244,9 +244,9 @@ function parseBrightness(intent, response, url) {
 
             }
             bodyString = JSON.stringify({
-                "color": "brightness:" + brightnessValue
+                "brightness": + brightnessValue
             });
-            sendRequest(url, methodType, bodyString, speechOutput, response); //send generated request to LIFX server
+            sendRequest(newurl, methodType, bodyString, speechOutput, response); //send generated request to LIFX server
         });
     });
 
