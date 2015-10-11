@@ -15,4 +15,4 @@ LIST_OF_STATES
 on | off	Edit
 
 LIST_OF_SCENES
-Wake Up
+Morning
