@@ -8,6 +8,11 @@ dimString: An array containing a list of strings associated with your "light dim
 brightString: An array containing a list of strings associated with your "light brightening" utterance, you can add or subtract as many of these as you want, just keep at least one.
 enableFeedback: A boolean that toggles whether or not Alexa will give you verbal feedback of your request.
 
-Currently I do not have the Scene Intent setup, I'll get to that when I have more time.
-
 To use my Skill, you can either host your own server, or use Amazon's Lambda server (which is what I do). Just create a new Alexa Skill and configure it to what you want. For my invocation name, I use "life ex." It works fairly well. Just copy and paste the IntentSchema and SampleUtterances into their respective field, then upload the index.js and AlexaSkill.js files to your preferred server.
+
+# Update:
+I've included the ability to utilize Scenes. The LIFX api requires the use of the scene's uuid in order to activate that particular scene. That's way to much to verbalize. Similar to the way I do the brightness shifting (dim,brighten) I added something to query your existing scenes and activate the scene that has the matching verbal utterance. 
+
+I've also added selectors. Follow the utterances to use them. You can easily scale it to add more, if you wish. Just speak the name of the light (as you have it set in the LIFX App) and you can then control that light. 
+
+One final adjustment. I'm now using both updated APIs/SDKs. You're going to have to add CustomSlots in order to use the new version. You can add them in the same location that you add your Utterances and IntentSchema (speaking of which, those are also updated. You should change those as well). Just follow my guidelines that I used. For lights, the names listed are the label that you have set the lights to in the LIFX App. Same goes for the scenes. Do not use two word scene names. I've noticed that sometimes Amazon adds hyphens to the name and it's just a bit more work to handle unexpected characters, so keep it simple. 
