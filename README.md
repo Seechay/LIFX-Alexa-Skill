@@ -16,3 +16,8 @@ I've included the ability to utilize Scenes. The LIFX api requires the use of th
 I've also added selectors. Follow the utterances to use them. You can easily scale it to add more, if you wish. Just speak the name of the light (as you have it set in the LIFX App) and you can then control that light. 
 
 One final adjustment. I'm now using both updated APIs/SDKs. You're going to have to add CustomSlots in order to use the new version. You can add them in the same location that you add your Utterances and IntentSchema (speaking of which, those are also updated. You should change those as well). Just follow my guidelines that I used. For lights, the names listed are the label that you have set the lights to in the LIFX App. Same goes for the scenes. Do not use two word scene names. I've noticed that sometimes Amazon adds hyphens to the name and it's just a bit more work to handle unexpected characters, so keep it simple. 
+
+#Group Selectors:
+I've added a way to utilize groups. In order to keep things simple, to add a group, all you need to do is add it to the LIST_OF_LIGHTS custom slot and then add it to the groupString[] defined in index.js
+
+Additionally, you can now control up to 3 individual lights/groups, using any number of combination. For instance, "Alexa, tell Lifx to turn Fan {group}, Desk{Light} and Dresser{Light} off.
