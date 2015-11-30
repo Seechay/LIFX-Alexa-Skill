@@ -20,4 +20,4 @@ One final adjustment. I'm now using both updated APIs/SDKs. You're going to have
 #Group Selectors:
 I've added a way to utilize groups. In order to keep things simple, to add a group, all you need to do is add it to the LIST_OF_LIGHTS custom slot and then add it to the groupString[] defined in index.js
 
-Additionally, you can now control up to 3 individual lights/groups, using any number of combination. For instance, "Alexa, tell Lifx to turn Fan {group}, Desk{Light} and Dresser{Light} off.
+Additionally, you can now control up to 3 individual lights/groups, using any number of combination. For instance, "Alexa, tell Lifx to turn Fan {group}, Desk{Light} and Dresser{Light} off."
