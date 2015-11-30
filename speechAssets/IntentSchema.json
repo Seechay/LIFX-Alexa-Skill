@@ -18,6 +18,10 @@
 		{
 			"name": "SelectorSecond",
 			"type": "LIST_OF_LIGHTS"
+		},        
+		{
+			"name": "SelectorThird",
+			"type": "LIST_OF_LIGHTS"
 		}
       ]
     },
@@ -34,6 +38,10 @@
 		},
 		{
 			"name": "SelectorSecond",
+			"type": "LIST_OF_LIGHTS"
+		},        
+		{
+			"name": "SelectorThird",
 			"type": "LIST_OF_LIGHTS"
 		}
       ]
@@ -52,7 +60,11 @@
 		{
 			"name": "SelectorSecond",
 			"type": "LIST_OF_LIGHTS"
-		}    
+		},        
+		{
+			"name": "SelectorThird",
+			"type": "LIST_OF_LIGHTS"
+		}   
       ]
     },
     {

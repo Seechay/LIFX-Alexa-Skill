@@ -3,6 +3,7 @@ AdjustBrightness {Adjustment} the lights
 AdjustBrightness {Brightness}
 AdjustBrightness {SelectorFirst} {Brightness}
 AdjustBrightness {SelectorFirst} and {SelectorSecond} {Brightness}
+AdjustBrightness {SelectorFirst} {SelectorSecond} and {SelectorThird} {Brightness}
 AdjustBrightness set the lights to {Brightness}
 AdjustBrightness set the lights to {Brightness} brightness
 AdjustBrightness set the lights to {Brightness} percent
@@ -18,6 +19,11 @@ AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness} bright
 AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness} percent
 AdjustBrightness set {SelectorFirst} and {SelectorSecond} to {Brightness} percent brightness
 AdjustBrightness set {SelectorFirst} and {SelectorSecond} brightness to {Brightness}
+AdjustBrightness set {SelectorFirst} {SelectorSecond} and {SelectorThird} to {Brightness}
+AdjustBrightness set {SelectorFirst} {SelectorSecond} and {SelectorThird} to {Brightness} brightness
+AdjustBrightness set {SelectorFirst} {SelectorSecond} and {SelectorThird} to {Brightness} percent
+AdjustBrightness set {SelectorFirst} {SelectorSecond} and {SelectorThird} to {Brightness} percent brightness
+AdjustBrightness set {SelectorFirst} {SelectorSecond} and {SelectorThird} brightness to {Brightness}
 AdjustPower toggle the lights
 AdjustPower turn {State} the lights
 AdjustPower turn {State} my lights
@@ -28,10 +34,13 @@ AdjustPower lights
 AdjustPower {State}
 AdjustPower turn {State} {SelectorFirst}
 AdjustPower turn {State} {SelectorFirst} and {SelectorSecond}
+AdjustPower turn {State} {SelectorFirst} {SelectorSecond} and {SelectorThird}
 AdjustPower turn {SelectorFirst} {State}
 AdjustPower turn {SelectorFirst} and {SelectorSecond} {State}
+AdjustPower turn {SelectorFirst} {SelectorSecond} and {SelectorThird} {State}
 AdjustPower set {SelectorFirst} to {State}
 AdjustPower set {SelectorFirst} and {SelectorSecond} to {State}
+AdjustPower set {SelectorFirst} {SelectorSecond} and {SelectorThird} to {State}
 AdjustColor make my lights {Color}
 AdjustColor set my lights to {Color}
 AdjustColor make the lights {Color}
@@ -39,10 +48,13 @@ AdjustColor set the lights to {Color}
 AdjustColor {Color}
 AdjustColor make {SelectorFirst} {Color}
 AdjustColor make {SelectorFirst} and {SelectorSecond} {Color}
+AdjustColor make {SelectorFirst} {SelectorSecond} and {SelectorThird} {Color}
 AdjustColor {SelectorFirst} {Color}
 AdjustColor {SelectorFirst} and {SelectorSecond} {Color}
+AdjustColor {SelectorFirst} {SelectorSecond} and {SelectorThird} {Color}
 AdjustColor set {SelectorFirst} to {Color}
 AdjustColor set {SelectorFirst} and {SelectorSecond} to {Color}
+AdjustColor set {SelectorFirst} {SelectorSecond} and {SelectorThird} to {Color}
 AdjustScene {Scene} mode
 AdjustScene set scene {Scene}
 AdjustScene set scene to {Scene}

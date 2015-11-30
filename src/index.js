@@ -5,6 +5,7 @@ var APP_ID = 'amzn1.echo-sdk-ams.app.xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'; //repl
 var appToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'; //replace with your LIFX app token
 var dimString = ["dim", "lower", "decrease", "down"]; //strings to dim the lights as setup in the utterances
 var brightString = ["bright", "brighten", "increase", "raise", "up"]; //strings to brighten the lights as setup in the utterances
+var groupString = ["fan", "furniture"]; //strings corresponding to group names
 var enableFeedback = true; //whether or not you want Alexa to tell you she changed the lights
 
 
@@ -79,15 +80,43 @@ function generateRequest(intent, session, response) {
     var speechOutput = "An error has occured.";
 	var selectorFirstSlot = intent.slots.SelectorFirst;
 	var selectorSecondSlot = intent.slots.SelectorSecond;
+	var selectorThirdSlot = intent.slots.SelectorThird;
 	var numSelectors = 0;
 	if (selectorFirstSlot && selectorFirstSlot.value)
-	{
-		numSelectors = 1;
-		selector = selector + 'label:' + selectorFirstSlot.value.capitalize();
+	{		
+		if(groupString.indexOf(String(selectorFirstSlot.value).toLowerCase()) > -1)
+		{
+			selector = selector + 'group:' + selectorFirstSlot.value.capitalize();
+		}
+		else
+		{
+			selector = selector + 'label:' + selectorFirstSlot.value.capitalize();
+		}
+		numSelectors++;
+		
 		if (selectorSecondSlot && selectorSecondSlot.value)
 		{
-			selector = selector + ',label:' + selectorSecondSlot.value.capitalize();
-			numSelectors = 2;
+			if(groupString.indexOf(String(selectorSecondSlot.value).toLowerCase()) > -1)
+			{
+				selector = selector + ',group:' + selectorSecondSlot.value.capitalize();
+			}
+			else
+			{
+				selector = selector + ',label:' + selectorSecondSlot.value.capitalize();
+			}			
+			numSelectors++;
+			if (selectorThirdSlot && selectorThirdSlot.value)
+			{
+				if(groupString.indexOf(String(selectorThirdSlot.value).toLowerCase()) > -1)
+				{
+					selector = selector + ',group:' + selectorThirdSlot.value.capitalize();
+				}
+				else
+				{
+					selector = selector + ',label:' + selectorThirdSlot.value.capitalize();
+				}			
+				numSelectors++;
+			}
 		}
 	}
 	else
@@ -114,7 +143,8 @@ function generateRequest(intent, session, response) {
                     parseBrightness(intent, response, urlPrefix+selector); //gets current brightness to dim/brighten with a shift
                 }
                 bodyString = JSON.stringify({
-                    "brightness": + brightnessValue
+                    "brightness": + brightnessValue,
+					"power": "on"
                 });
                 break;
             }
@@ -128,14 +158,20 @@ function generateRequest(intent, session, response) {
                     bodyString = JSON.stringify({
                         "power": state
                     });
-					if(numSelectors == 1){
-					speechOutput = "I have turned " + String(selectorFirstSlot.value) + " " + state + ".";
-					}
-					else if(numSelectors == 2){
-					speechOutput = "I have turned " + String(selectorFirstSlot.value) + " and " + String(selectorSecondSlot.value) + " " + state + ".";
-					}
-					else{                    
-					speechOutput = "I have turned the lights " + state + ".";
+					switch(numSelectors){
+					case 1:
+						speechOutput = "I have turned " + String(selectorFirstSlot.value) + " " + state + ".";
+						break;
+					case 2:
+						speechOutput = "I have turned " + String(selectorFirstSlot.value) + " and " + String(selectorSecondSlot.value) + " " + state + ".";
+						break;
+					case 3:
+						speechOutput = "I have turned " + String(selectorFirstSlot.value) + ", " + String(selectorSecondSlot.value) + " and " + String(selectorThirdSlot.value) + " " + state + ".";
+						break;
+					default:
+						speechOutput = "I have turned the lights " + state + ".";
+						break;
+					
 					}
 					}
 					else { //if no specific request, toggle the lights
@@ -152,7 +188,8 @@ function generateRequest(intent, session, response) {
                 methodType = 'PUT';
                 var color = String(intent.slots.Color.value).toLowerCase();
                 bodyString = JSON.stringify({
-                    "color": color
+                    "color": color,
+					"power": "on"
                 });
                 speechOutput = "I have set color to " + color + ".";
                 break;

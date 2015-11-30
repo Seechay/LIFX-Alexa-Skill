@@ -6,13 +6,13 @@ LIST_OF_ADJUSTMENTS
 dim | lower | decrease | brighten | bright | increase | raise | up | down
 
 LIST_OF_COLORS
-red | orange | blue | green | yellow | white | pink | purple	Edit
+red | orange | blue | green | yellow | white | pink | purple
 
 LIST_OF_LIGHTS
-North | East | South | West	Edit
+North | East | South | West | Desk | Dresser | Fan | Furniture
 
 LIST_OF_STATES
-on | off	Edit
+on | off
 
 LIST_OF_SCENES
 Morning
